@@ -39,20 +39,12 @@ export const ShelfQuestSection = () => {
             {shelfquest.subtitle}
           </p>
         </div>
-
-        {/* Hero Image Placeholder */}
         <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl border border-border">
-          <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-            <div className="text-center">
-              <BookOpen className="h-24 w-24 text-primary mx-auto mb-4" />
-              <p className="text-muted-foreground">
-                📸 Add ShelfQuest screenshot here
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Recommended: 1200x675px (hero shot of the app)
-              </p>
-            </div>
-          </div>
+          <img
+            src="/projects/heroshot_shelfquest.png"
+            alt="ShelfQuest app screenshot"
+            className="w-full h-auto object-cover aspect-video"
+          />
         </div>
 
         {/* Project Overview */}
