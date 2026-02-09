@@ -1,12 +1,12 @@
 export const bio = {
   name: "Joel Guzman",
   title: "Full-Stack Developer",
-  subtitle: "Self-Taught Developer | Former High School Teacher & Coach",
+  subtitle: "Full-Stack Developer | 3 Shipped Products",
   location: "Brownsville, Texas",
   email: "jolman009@gmail.com",
   phone: "+1 (956) 832-2224",
   
-  tagline: "From teaching English to building production apps—I'm a self-taught developer who built a cross-platform reading app with AI in 3 months.",
+  tagline: "Former teacher who traded lesson plans for production deploys. I build full-stack apps with React, Node.js, and AI — with a bias for getting things live.",
   
   story: {
     intro: `I first learned to code in 2002, teaching myself HTML, CSS, and JavaScript from books I bought at Waldenbooks. I built websites for my church and youth ministry, but life took me in a different direction—I became a high school English teacher and head varsity softball coach.`,
