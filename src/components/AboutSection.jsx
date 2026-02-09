@@ -1,5 +1,7 @@
 import { Book, Rocket, Users, Zap } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { bio } from "@/data/bio";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const iconMap = {
   Book,
@@ -9,8 +11,17 @@ const iconMap = {
 };
 
 export const AboutSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
-    <section id="about" className="py-24 px-4 relative">
+    <section
+      id="about"
+      ref={ref}
+      className={cn(
+        "py-24 px-4 relative",
+        isVisible ? "animate-reveal" : "opacity-0"
+      )}
+    >
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           About <span className="text-primary">Me</span>
@@ -34,7 +45,7 @@ export const AboutSection = () => {
             {/* Timeline highlight */}
             <div className="bg-secondary/30 rounded-lg p-6 border border-border">
               <h4 className="font-semibold mb-4 flex items-center gap-2">
-                <span className="text-xl">📅</span> Journey Timeline
+                <span className="text-xl" aria-hidden="true">📅</span> Journey Timeline
               </h4>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center">

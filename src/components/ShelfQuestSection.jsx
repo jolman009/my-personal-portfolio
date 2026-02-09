@@ -1,17 +1,20 @@
-import { 
-  ExternalLink, 
-  Github, 
-  Smartphone, 
-  Zap, 
-  Lock, 
+import {
+  ExternalLink,
+  Github,
+  Smartphone,
+  Zap,
+  Lock,
   Cloud,
   BookOpen,
   Sparkles
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { projects } from "@/data/projects";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export const ShelfQuestSection = () => {
   const shelfquest = projects.find(p => p.featured);
+  const { ref, isVisible } = useScrollReveal();
 
   if (!shelfquest) return null;
 
@@ -25,7 +28,14 @@ export const ShelfQuestSection = () => {
   };
 
   return (
-    <section id="shelfquest" className="py-24 px-4 relative bg-secondary/30">
+    <section
+      id="shelfquest"
+      ref={ref}
+      className={cn(
+        "py-24 px-4 relative bg-secondary/30",
+        isVisible ? "animate-reveal" : "opacity-0"
+      )}
+    >
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-16">

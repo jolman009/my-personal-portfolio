@@ -10,46 +10,28 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { bio } from "@/data/bio";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+
+// TODO: Replace with your Formspree form ID from https://formspree.io
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { ref, isVisible } = useScrollReveal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // TODO: Replace with actual form submission
-    // Option 1: Use Formspree (easiest)
-    // Option 2: Use EmailJS
-    // Option 3: Use your own backend API
-    
-    // For now, simulate submission
-    setTimeout(() => {
-      toast({
-        title: "Message received!",
-        description: "Thanks for reaching out. I'll get back to you soon!",
-      });
-      setIsSubmitting(false);
-      e.target.reset();
-    }, 1500);
-
-    /* 
-    // FORMSPREE EXAMPLE (https://formspree.io)
-    // 1. Sign up at formspree.io
-    // 2. Get your form endpoint
-    // 3. Replace the code above with:
-    
     try {
       const formData = new FormData(e.target);
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
         body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { Accept: "application/json" },
       });
-      
+
       if (response.ok) {
         toast({
           title: "Message sent!",
@@ -57,30 +39,36 @@ export const ContactSection = () => {
         });
         e.target.reset();
       } else {
-        throw new Error('Form submission failed');
+        throw new Error("Form submission failed");
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Oops!",
         description: "Something went wrong. Please email me directly.",
-        variant: "destructive"
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
     }
-    */
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
+    <section
+      id="contact"
+      ref={ref}
+      className={cn(
+        "py-24 px-4 relative bg-secondary/30",
+        isVisible ? "animate-reveal" : "opacity-0"
+      )}
+    >
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           Let's <span className="text-primary">Connect</span>
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          I'm actively seeking opportunities as a full-stack developer. 
-          Whether you're hiring, want to collaborate, or just want to chat 
+          I'm actively seeking opportunities as a full-stack developer.
+          Whether you're hiring, want to collaborate, or just want to chat
           about tech—I'd love to hear from you.
         </p>
 

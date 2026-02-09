@@ -1,19 +1,29 @@
-import { ArrowRight, ExternalLink, Github, Lock } from "lucide-react";
-import { getActiveProjects } from "@/data/projects";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { getNonFeaturedProjects } from "@/data/projects";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export const ProjectsSection = () => {
-  const projects = getActiveProjects();
+  const projects = getNonFeaturedProjects();
+  const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="projects" className="py-24 px-4 relative">
+    <section
+      id="projects"
+      ref={ref}
+      className={cn(
+        "py-24 px-4 relative",
+        isVisible ? "animate-reveal" : "opacity-0"
+      )}
+    >
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           Other <span className="text-primary">Projects</span>
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Beyond ShelfQuest, here are other projects that showcase my journey 
-          from 2002 to today. Each one tells part of my story as a developer.
+          Client websites, productivity tools, and full-stack applications —
+          each built with modern React and shipped to production.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -24,16 +34,20 @@ export const ProjectsSection = () => {
             >
               {/* Project Image */}
               <div className="h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-muted-foreground text-sm">
-                      📸 Add {project.title} screenshot
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      800x450px recommended
-                    </p>
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-foreground/80">
+                      {project.title}
+                    </h3>
                   </div>
-                </div>
+                )}
               </div>
 
               <div className="p-6">
@@ -52,22 +66,15 @@ export const ProjectsSection = () => {
                 {/* Title and Subtitle */}
                 <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
                 {project.subtitle && (
-                  <p className="text-sm text-primary mb-2">{project.subtitle}</p>
+                  <p className="text-sm text-primary mb-2">
+                    {project.subtitle}
+                  </p>
                 )}
 
                 {/* Description */}
                 <p className="text-muted-foreground text-sm mb-4">
                   {project.description}
                 </p>
-
-                {/* Legacy badge if applicable */}
-                {project.legacy && (
-                  <div className="mb-4">
-                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-                      🕰️ Legacy Project (2002)
-                    </span>
-                  </div>
-                )}
 
                 {/* Links */}
                 <div className="flex justify-between items-center">
@@ -78,7 +85,7 @@ export const ProjectsSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                        aria-label="View live demo"
+                        aria-label={`View ${project.title} live demo`}
                       >
                         <ExternalLink size={20} />
                       </a>
@@ -89,18 +96,10 @@ export const ProjectsSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                        aria-label="View source code"
+                        aria-label={`View ${project.title} source code`}
                       >
                         <Github size={20} />
                       </a>
-                    )}
-                    {!project.githubUrl && !project.legacy && (
-                      <span 
-                        className="text-muted-foreground/50 flex items-center gap-1 text-xs"
-                        title="Private repository"
-                      >
-                        <Lock size={16} />
-                      </span>
                     )}
                   </div>
                 </div>

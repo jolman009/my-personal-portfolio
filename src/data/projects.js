@@ -43,35 +43,34 @@ export const projects = [
   },
   {
     id: 2,
-    title: "Personal Portfolio",
-    subtitle: "Modern React Portfolio",
+    title: "Change180",
+    subtitle: "Life Coaching Website",
     description:
-      "Responsive portfolio website with custom animations, theme switching, and interactive components. Built from scratch using React 19 and Tailwind CSS.",
-    image: "/projects/portfolio.png",
-    tags: ["React", "Vite", "Tailwind CSS", "shadcn/ui"],
-    demoUrl: "https://jolman.netlify.app",
-    githubUrl: "https://github.com/jolman009/my-personal-portfolio",
+      "Professional website built for Myra Z. Guzman, M.Ed. — a life coaching business.",
+    image: "/projects/change180.png",
+    tags: ["React", "Tailwind CSS", "Vite"],
+    demoUrl: "https://change180.org",
+    githubUrl: "https://github.com/jolman009/change180",
     featured: false,
   },
   {
     id: 3,
-    title: "Ministry Website (2002)",
-    subtitle: "Where It All Started",
+    title: "JotFlow",
+    subtitle: "Journal + TODO with Google Calendar",
     description:
-      "My first coding project - a church website built with HTML, CSS, and JavaScript learned from books at Waldenbooks. This sparked a 20-year journey back to code.",
-    image: "/projects/legacy.png",
-    tags: ["HTML", "CSS", "JavaScript", "Flash"],
-    demoUrl: null,
-    githubUrl: null,
+      "A journaling app with templates and TODO functionality that integrates with Google Calendar.",
+    image: "/projects/jotflow.png",
+    tags: ["React", "Supabase", "Google Calendar API"],
+    demoUrl: "https://jotflow.me",
+    githubUrl: "https://github.com/jolman009/online-journal",
     featured: false,
-    legacy: true,
   },
 ];
 
 // Helper to get featured projects
-export const getFeaturedProjects = () => 
-  projects.filter(p => p.featured);
+export const getFeaturedProjects = () =>
+  projects.filter((p) => p.featured);
 
-// Helper to get all active projects (not legacy)
-export const getActiveProjects = () => 
-  projects.filter(p => !p.legacy);
+// Helper to get non-featured projects (Change180, JotFlow)
+export const getNonFeaturedProjects = () =>
+  projects.filter((p) => !p.featured);

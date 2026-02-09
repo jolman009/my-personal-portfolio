@@ -12,17 +12,25 @@ import { Footer } from "../components/Footer";
 export const Home = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* Skip to content */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none"
+      >
+        Skip to main content
+      </a>
+
       {/* Theme Toggle */}
       <ThemeToggle />
-      
+
       {/* Background Effects */}
       <StarBackground />
 
       {/* Navbar */}
       <Navbar />
-      
+
       {/* Main Content */}
-      <main>
+      <main id="main-content">
         <HeroSection />
         <AboutSection />
         <ShelfQuestSection />
