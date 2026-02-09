@@ -36,17 +36,17 @@ export const HeroSection = () => {
           <div className="flex flex-wrap justify-center gap-4 pt-4 opacity-0 animate-fade-in-delay-4">
             <div className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
               <span className="text-sm font-medium">
-                🚀 Built ShelfQuest in 90 Days
+                🚀 3 Products Shipped to Production
               </span>
             </div>
             <div className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
               <span className="text-sm font-medium">
-                📱 Live on Windows Store
+                📱 Live on Windows & Apple App Store
               </span>
             </div>
             <div className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
               <span className="text-sm font-medium">
-                🎓 Former Teacher & Coach
+                🎓 Teacher Mindset, Builder Output
               </span>
             </div>
           </div>
